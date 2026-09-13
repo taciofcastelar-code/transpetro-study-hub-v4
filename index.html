@@ -1,60 +1,63 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="theme-color" content="#07111f">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Transpetro Hub">
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="apple-touch-icon" href="./icon-192.png">
-<link rel="icon" href="./icon-192.png">
-<link rel="stylesheet" href="./styles.css">
-<title>Transpetro Study Hub V4</title>
-</head>
-<body>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0f172a"><title>Transpetro Study Hub V6 Adaptive</title><link rel="manifest" href="./manifest.webmanifest"><link rel="stylesheet" href="./css/app.css"></head><body>
 <div class="app">
-<header>
-  <div>
-    <h1>Transpetro Study Hub V4</h1>
-    <div class="sub">Enfermeiro do Trabalho • CESGRANRIO • PWA • <span id="onlineStatus" class="offline-badge"></span></div>
-  </div>
-  <button id="themeBtn" class="ghost" aria-label="Alternar tema">◐</button>
-</header>
-
-<div id="installBanner" class="install-banner">
-  <div class="grow"><b>Instalar aplicativo</b><div class="small">Use como app e mantenha acesso offline.</div></div>
-  <button id="installBtn" class="primary">Instalar</button>
-</div>
+<header><div><h1>Transpetro Study Hub V6 Adaptive</h1><div class="sub">Enfermeiro do Trabalho • CESGRANRIO • estudo adaptativo • offline-first</div></div><button id="themeBtn" class="ghost" aria-label="Alternar tema">◐</button></header>
 
 <section id="home">
 <div class="grid">
-  <div class="stat"><b>942</b><span>itens importados</span></div>
-  <div class="stat"><b>923</b><span>questões únicas</span></div>
-  <div class="stat"><b id="sAnswered">0</b><span>respondidas</span></div>
-  <div class="stat"><b id="sAccuracy">0%</b><span>acertos</span></div>
-  <div class="stat"><b id="sErrors">0</b><span>erros ativos</span></div>
+<div class="stat"><b>942</b><span>itens importados</span></div>
+<div class="stat"><b>923</b><span>questões únicas</span></div>
+<div class="stat"><b id="sAnswered">0</b><span>respondidas</span></div>
+<div class="stat"><b id="sAccuracy">0%</b><span>acertos</span></div>
+<div class="stat"><b id="sErrors">0</b><span>erros ativos</span></div>
 </div>
 
 <div class="card">
-<h2 style="margin-top:0;font-size:17px">Treino rápido</h2>
+<h2 style="margin-top:0;font-size:17px">Aprendizado adaptativo V6</h2>
+<div class="v5-grid">
+<div class="v5-stat"><b id="v5Due">0</b><span>revisões vencidas</span></div>
+<div class="v5-stat"><b id="v5Learning">0</b><span>em aprendizado</span></div>
+<div class="v5-stat"><b id="v5Strong">0</b><span>fortes</span></div>
+<div class="v5-stat"><b id="v5Mastered">0</b><span>dominados</span></div>
+</div>
+<div class="adaptive-note">O botão <b>TREINAR AGORA</b> prioriza revisão vencida, conceitos fracos, erros recorrentes e conteúdo novo. Simulados continuam em ordem original.</div>
+</div>
+
+<div class="card">
+<h2 style="margin-top:0;font-size:17px">Treino</h2>
 <div class="controls">
-<select id="catSel"><option value="all">Todos os assuntos</option></select>
+<select id="catSel"><option value="all">Área rápida: todas</option></select>
 <select id="sourceSel"><option value="all">Todas as fontes</option></select>
 <select id="diffSel"><option value="all">Todas as dificuldades</option><option>Fácil</option><option>Médio</option><option>Médio/Difícil</option><option>Difícil</option></select>
 <select id="qtySel"><option value="5">5 questões</option><option value="10" selected>10 questões</option><option value="20">20 questões</option><option value="30">30 questões</option><option value="50">50 questões</option><option value="70">70 questões</option><option value="9999">Todas</option></select>
 </div>
+<div class="topic-filter-box">
+  <b>Estudar por temas específicos</b>
+  <div class="small" style="margin-top:4px">Marque quantos temas quiser. Ex.: todas as NRs, NR-7/PCMSO + NR-1/PGR, CAT + NTEP, ou apenas um subtema.</div>
+  <div class="filter-toolbar" style="margin-top:10px">
+    <button type="button" class="filter-chip" data-preset="allNR">Todas as NRs</button>
+    <button type="button" class="filter-chip" data-preset="pcmso">PCMSO / NR-7</button>
+    <button type="button" class="filter-chip" data-preset="gro">NR-1 / GRO / PGR</button>
+    <button type="button" class="filter-chip" data-preset="catntep">CAT / NTEP</button>
+    <button type="button" class="filter-chip" data-preset="sus">SUS / RENAST / CEREST</button>
+    <button type="button" class="filter-chip" data-preset="clear">Limpar seleção</button>
+  </div>
+  <div id="topicMultiList" class="multi-list"></div>
+  <div id="selectionSummary" class="selection-summary">Nenhum tema específico selecionado: serão usados os filtros gerais.</div>
+</div>
 <div class="row" style="margin-top:10px">
-<button class="primary grow" id="startBtn">Começar treino</button>
+<button class="primary grow" id="startBtn">TREINAR AGORA</button><button class="ghost grow" id="freeBtn">Treino livre</button>
 <button class="ghost grow" id="errorsBtn">Revisar erros</button>
 <button class="ghost grow" id="favBtnHome">Favoritas</button>
 </div>
 <label class="small" style="display:block;margin-top:10px"><input id="dedupeChk" type="checkbox" checked style="width:auto;min-height:auto"> Evitar questões repetidas no treino livre</label>
 </div>
 
-<div class="card"><h2 style="margin-top:0;font-size:17px">Desempenho por área</h2><div style="overflow:auto"><div id="categoryStats"></div></div></div>
-<div class="note" style="margin-top:12px"><b>PWA:</b> após a primeira abertura online, o aplicativo fica disponível offline. No iPhone, use Compartilhar → Adicionar à Tela de Início. No Android/Chrome, use o botão “Instalar” quando aparecer.</div>
+<div class="card">
+<h2 style="margin-top:0;font-size:17px">Desempenho por área</h2>
+<div style="overflow:auto"><div id="categoryStats"></div></div>
+</div>
+
+<div class="note" style="margin-top:12px"><b>Celular:</b> abra este arquivo no Chrome, Safari, Edge ou Firefox. Visualizadores de arquivos podem mostrar apenas uma prévia estática e não executar o JavaScript.</div>
 </section>
 
 <section id="quiz" class="hidden">
@@ -62,24 +65,38 @@
 <div class="card">
 <div><span class="pill" id="qCat"></span><span class="pill" id="qDiff"></span><span class="pill" id="qSource"></span><span class="pill" id="qCount"></span></div>
 <div class="progress"><i id="qProg"></i></div>
-<div class="qtext" id="qText"></div><div id="options"></div><div id="feedback"></div>
+<div class="qtext" id="qText"></div>
+<div id="options"></div>
+<div id="feedback"></div>
 <div class="row" style="margin-top:14px"><button id="nextBtn" class="primary grow hidden">Próxima questão →</button></div>
 </div>
 </section>
 
-<section id="simulados" class="hidden"><div class="card"><h2 style="margin-top:0;font-size:17px">Bancos e simulados</h2><p class="small">Reproduza cada banco na ordem original.</p><div id="sourceCards"></div></div></section>
-<section id="errors" class="hidden"><div class="card"><h2 style="margin-top:0;font-size:17px">Caderno de erros</h2><div id="errorList"></div></div></section>
+<section id="simulados" class="hidden">
+<div class="card"><h2 style="margin-top:0;font-size:17px">Bancos e simulados importados</h2>
+<p class="small">Selecione uma fonte para reproduzir aquele banco na ordem original.</p>
+<div id="sourceCards"></div></div>
+</section>
+
+<section id="errors" class="hidden">
+<div class="card"><h2 style="margin-top:0;font-size:17px">Caderno de erros</h2><div id="errorList"></div></div>
+</section>
+
 <section id="library" class="hidden">
-<div class="card"><h2 style="margin-top:0;font-size:17px">Acervo incorporado</h2><div class="source-list" id="libraryList"></div></div>
+<div class="card"><h2 style="margin-top:0;font-size:17px">Acervo incorporado</h2>
+<p class="small">Esta versão consolida os bancos e simulados materializados da coleção Transpetro. As fontes permanecem identificadas em cada questão.</p>
+<div class="source-list" id="libraryList"></div></div>
 <div class="card"><div class="row"><button id="exportBtn" class="ghost grow">Exportar progresso</button><button id="resetBtn" class="danger grow">Zerar progresso</button></div></div>
 </section>
 </div>
 
 <div class="bottom"><div class="nav">
-<button data-view="home">Início</button><button data-view="simulados">Simulados</button><button data-view="errors">Erros</button><button data-view="library">Acervo</button><button id="randomBtn">Aleatório</button>
+<button data-view="home">Início</button>
+<button data-view="simulados">Simulados</button>
+<button data-view="errors">Erros</button>
+<button data-view="library">Acervo</button>
+<button id="randomBtn">Aleatório</button>
 </div></div>
 
-<script src="./questions.js"></script>
-<script src="./app.js"></script>
-</body>
-</html>
+
+<script src="./data/questions.js"></script><script src="./js/app.js"></script><script>if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js"));</script></body></html>
